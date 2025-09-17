@@ -12,20 +12,12 @@ setCompletedTodos:React.Dispatch<React.SetStateAction<Todo[]>>
 }
 const TodoList:React.FC<Props>= ({todos,setTodos,completedTodos,setCompletedTodos}) => {
   return (
-    // <div className='todos'>
-    //     {todos&&
-    //     todos.map((todo)=>(
-    //         <SingleTodo key={todo.id} todo={todo} 
-    //         todos={todos} setTodos={setTodos}
-    //         />
-    //     ))
-    //   }
-    // </div>
+  
     <div className="container">
-      {/* <Droppable droppableId='TodosList' isDropDisabled={false}>
-        {
-          (provided)=>(
-            <div className="todos" ref={provided.innerRef} {...provided.droppableProps}>
+      
+        
+          
+            <div className="todos" >
              <span className="todos_heading">
               Active  Tasks
              </span>
@@ -36,13 +28,12 @@ const TodoList:React.FC<Props>= ({todos,setTodos,completedTodos,setCompletedTodo
              }
               
       </div>
-          )
-        }
-       </Droppable>
-       <Droppable droppableId='TodosRemove'>
-        {
-          (provided)=>(
-       <div className="todos remove"  ref={provided.innerRef} {...provided.droppableProps}>
+         
+       
+       
+        
+          
+       <div className="todos remove" >
          <span className="todos_heading">
               Completed  Tasks
              </span>
@@ -54,15 +45,13 @@ const TodoList:React.FC<Props>= ({todos,setTodos,completedTodos,setCompletedTodo
              }
            
       </div>
-          )
-        }
-       </Droppable> */}
-       <Droppable droppableId="TodosList"    isCombineEnabled={true}>
-  {(provided,snapshot) => (
+          
+        
+       
+      
+  
     <div
-      className={`todos ${snapshot.isDraggingOver?'dragactive':''}`}
-      ref={provided.innerRef}
-      {...provided.droppableProps}
+     
     >
       <span className="todos_heading">Active Tasks</span>
       {todos.map((todo, index) => (
@@ -74,17 +63,15 @@ const TodoList:React.FC<Props>= ({todos,setTodos,completedTodos,setCompletedTodo
           setTodos={setTodos}
         />
       ))}
-      {provided.placeholder}   {/* 👈 Required */}
+      
     </div>
-  )}
-</Droppable>
+  
 
-<Droppable droppableId="TodosRemove" isCombineEnabled={true}>
-  {(provided,snapshot) => (
+
+
+  
     <div
-      className={`todos remove ${snapshot.isDraggingOver?'dragcomplete':''}`}
-      ref={provided.innerRef}
-      {...provided.droppableProps}
+   
     >
       <span className="todos_heading">Completed Tasks</span>
       {completedTodos.map((todo, index) => (
@@ -96,10 +83,10 @@ const TodoList:React.FC<Props>= ({todos,setTodos,completedTodos,setCompletedTodo
           setTodos={setCompletedTodos}
         />
       ))}
-      {provided.placeholder}   {/* 👈 Required */}
+      
     </div>
-  )}
-</Droppable>
+
+
 
     </div>
   )

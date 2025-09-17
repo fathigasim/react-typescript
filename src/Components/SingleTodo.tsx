@@ -26,7 +26,7 @@ const SingleTodo = ({todo,todos,setTodos,index}:Props) => {
    const handleDelete=(id:number)=>{
        setTodos(todos.filter((todo)=>(todo.id!==id)));
   }
-  const handeEdit=(e:React.FormEvent,id:number)=>{
+  const handleEdit=(e:React.FormEvent,id:number)=>{
     e.preventDefault();
     setTodos(todos.map((todo)=>(
       todo.id===id?{...todo,todo:editToDo}:todo
@@ -42,40 +42,32 @@ const SingleTodo = ({todo,todos,setTodos,index}:Props) => {
       inputRef.current?.focus()
      },[edit])
   return (
-    <Draggable draggableId={todo.id.toString()} index={index}>
-      {
-        (provided,snapshot)=>(
+    
+     
 
-         <form 
-      ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}
-         className={`todos_single${snapshot.isDragging?'drag':''}`} onSubmit={(e)=>handeEdit(e,todo.id)}>
-      {
+         <form >
+
+      
         edit?(
           <input ref={inputRef} value={editToDo} onChange={(e)=>setEditToDo(e.target.value)} className="todos-single--text"/>
         ):
         todo.isDone?(
           <s className="todos-single--text">{todo.todo}</s>
-        ):(
-          <span className="todos-single--text"> {todo.todo} </span>
         )
-      }
+       
+      
        
         
      
        <div>
-        <span className="icon" onClick={()=>{
-          if(!edit&&!todo.isDone){
-            setEdit(!edit)
-          }
-        }}><AiFillEdit/></span>
+        <span className="icon" onClick={(e)=>handleEdit(e,todo.id)}><AiFillEdit/></span>
         <span className="icon" onClick={()=>handleDelete(todo.id)}><AiFillDelete/></span>
         <span className="icon" onClick={()=>handleDone(todo.id)}><AiOutlineCheck/></span>
        </div>
     </form>
-        )
-      }
+     
     
-    </Draggable>
+    
   )
 }
 
